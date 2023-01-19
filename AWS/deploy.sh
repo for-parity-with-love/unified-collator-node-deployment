@@ -40,7 +40,7 @@ do
                              cat backend/${PROVIDER}-backend.tmp | tee backend.tf > /dev/null 2>&1
                              terraform init -reconfigure
                         fi
-                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${PROVIDER}/${WORKSPACE}-collator.tfvars tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars --profile ${PROVIDER}-mfa
+                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${PROVIDER}/${WORKSPACE}-collator.tfvars tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars --profile ${PROFILE}
                         terraform workspace select ${WORKSPACE}
                         terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars
                         echo "terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars"
@@ -59,7 +59,7 @@ do
                             cat backend/${PROVIDER}-backend.tmp | tee backend.tf > /dev/null 2>&1
                            terraform init -reconfigure
                         fi
-                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${PROVIDER}/${WORKSPACE}-collator.tfvars tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars --profile ${PROVIDER}-mfa
+                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${PROVIDER}/${WORKSPACE}-collator.tfvars tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars --profile ${PROFILE}
                         terraform workspace select ${WORKSPACE}
                         terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars
                         echo "terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars"
@@ -78,7 +78,7 @@ do
                             cat backend/${PROVIDER}-backend.tmp | tee backend.tf > /dev/null 2>&1
                             terraform init -reconfigure
                         fi
-                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${PROVIDER}/${WORKSPACE}-collator.tfvars tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars --profile ${PROVIDER}-mfa
+                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${PROVIDER}/${WORKSPACE}-collator.tfvars tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars --profile ${PROFILE}
                         terraform workspace select ${WORKSPACE}
                         terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars
                         echo "terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars"
@@ -112,7 +112,7 @@ do
                              cat backend/${PROVIDER}-backend.tmp | tee backend.tf > /dev/null 2>&1
                              terraform init -reconfigure
                         fi
-                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${PROVIDER}/${WORKSPACE}-collator.tfvars tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars --profile ${PROVIDER}-mfa
+                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${PROVIDER}/${WORKSPACE}-collator.tfvars tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars --profile ${PROFILE}
                         terraform workspace select ${WORKSPACE}
                         terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars
                         echo "terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars"
@@ -131,7 +131,7 @@ do
                             cat backend/${PROVIDER}-backend.tmp | tee backend.tf > /dev/null 2>&1
                            terraform init -reconfigure
                         fi
-                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${PROVIDER}/${WORKSPACE}-collator.tfvars tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars --profile ${PROVIDER}-mfa
+                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${PROVIDER}/${WORKSPACE}-collator.tfvars tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars --profile ${PROFILE}
                         terraform workspace select ${WORKSPACE}
                         terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars
                         echo "terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars"
@@ -150,7 +150,7 @@ do
                             cat backend/${PROVIDER}-backend.tmp | tee backend.tf > /dev/null 2>&1
                             terraform init -reconfigure
                         fi
-                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${PROVIDER}/${WORKSPACE}-collator.tfvars tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars --profile ${PROVIDER}-mfa
+                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${PROVIDER}/${WORKSPACE}-collator.tfvars tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars --profile ${PROFILE}
                         terraform workspace select ${WORKSPACE}
                         terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars
                         echo "terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars"
