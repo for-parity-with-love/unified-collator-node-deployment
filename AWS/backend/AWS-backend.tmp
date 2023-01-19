@@ -5,6 +5,6 @@ terraform {
       key                    = "tfstate"
       region                 = "eu-central-1"                  #chnge this just in case if region was changed in tfvars
       profile                = "blaize"                        #change this
-      #dynamodb_table        = "cspot-terraform-state-lock"    #uncomment this and change name if dynamodb table was created and using
+      #dynamodb_table        = "blaize-terraform-state-lock"    #uncomment this and change name if dynamodb table was created and using
   }
 }
