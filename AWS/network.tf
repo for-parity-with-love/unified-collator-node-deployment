@@ -1,3 +1,12 @@
+locals {
+  first_octet = random_integer.octet1.result
+  second_octet = random_integer.octet2.result
+  final_first_cidr = join(".", [local.first_octet, local.second_octet, "0", "0/16"])
+  incremented_second_octet =  format(random_integer.octet2.result + "1")
+  final_second_cidr =  replace(local.final_first_cidr, "${local.second_octet}.0.0/16", "${local.incremented_second_octet}.0.0/16")
+
+}
+
 data "aws_availability_zones" "available" {}
 
 resource "random_integer" "octet1" {
@@ -8,21 +17,6 @@ resource "random_integer" "octet1" {
 resource "random_integer" "octet2" {
   min     = 0
   max     = 254
-}
-
-locals {
-  first_octet = random_integer.octet1.result
-  second_octet = random_integer.octet2.result
-  final_first_cidr = join(".", [local.first_octet, local.second_octet, "0", "0/16"])
-  incremented_second_octet =  format(random_integer.octet2.result + "1")
-  final_second_cidr =  replace(local.final_first_cidr, "${local.second_octet}.0.0/16", "${local.incremented_second_octet}.0.0/16")
-
-  secondary_cidr_blocks_map = {
-    test   = "10.5.0.0/16"
-    dev    = "10.2.0.0/16"
-    prod   = "10.15.0.0/16"
-    production = "10.15.0.0/16"
-  }
 }
 
 module "vpc" {
@@ -39,8 +33,7 @@ module "vpc" {
 
 resource "aws_vpc_ipv4_cidr_block_association" "secondary_ipv4_cidr" {
   vpc_id     = module.vpc.vpc_id
-  ##if not azondo then attach random cidr but if azondo - select depends from environment
-  cidr_block = "${var.project_name == "azondo" ? lookup(local.secondary_cidr_blocks_map, local.environment, "10.7.0.0/16") : local.final_second_cidr}"
+  cidr_block = local.final_second_cidr
 }
 
 module "subnets" {

@@ -1,4 +1,4 @@
-resource "kubernetes_deployment_v1" "example" {
+resource "kubernetes_deployment_v1" "collator" {
   metadata {
     name = "collator"
     labels = {
