@@ -13,7 +13,7 @@ builds/*
 crash.log
 crash.*.log
 
-
+.terraform.lock.hcl
 *.tfvars
 *.tfvars.json
 

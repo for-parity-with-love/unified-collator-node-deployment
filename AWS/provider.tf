@@ -5,10 +5,6 @@ provider "aws" {
   shared_credentials_files = ["$HOME/.aws/credentials"]
 }
 
-provider "cloudflare" {
-  api_token = var.cloudflare_api_token
-}
-
 provider "helm" {
   debug = true
   kubernetes {
