@@ -12,6 +12,11 @@ aws_secret_access_key = KEYKEYKEYKEYKEYKEYKEYKEYKEY
 2) Then you should create a bucket because we will store your state and tfvars (file with variables) in bucket.
 after it would be done, you will need to edit `deploy.sh` and `upload-tfvars.sh` scripts and fill `NAME_OF_THE_BUCKET` and `PROFILE` variables
 
+3) Open tfvar file and edit these variables
+```
+aws_region                          = "eu-central-1"
+aws_profile_name                    = "blaize" 
+```
 
 
 ### Usage

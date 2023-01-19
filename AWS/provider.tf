@@ -1,7 +1,7 @@
 # Main provider for almost all resources
 provider "aws" {
   region                  = var.aws_region
-  profile                 = "${var.project_name}-mfa"
+  profile                 = "blaize"
   shared_credentials_files = ["$HOME/.aws/credentials"]
 }
 
