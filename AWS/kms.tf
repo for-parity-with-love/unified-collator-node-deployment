@@ -1,3 +1,7 @@
+data "aws_kms_alias" "kms_alias_eks_cluster" {
+  name = "alias/${module.eks_cluster.eks_cluster_id}"
+}
+
 resource "aws_iam_policy" "cluster_kms_policy" {
   name        = "${local.environment}-${var.project_name}-kms-policy"
   description = "This policy fix cluster health-check-session AccessDenied error"

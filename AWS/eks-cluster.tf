@@ -1,3 +1,8 @@
+#uncomment it just in case if you need to add additional admin to aws-auth config
+#data "aws_iam_group" "eks_admin" {
+#  group_name = "cluster_access"
+#}
+
 locals {
   cluster_version                              = "1.24"
   aws_vpc_cni_version                          = "v1.12.0"
@@ -16,7 +21,7 @@ locals {
     ) => group
   }
 
-  #uncomment it just in case if you need to add additional admin to aws-auth config
+#uncomment it just in case if you need to add additional admin to aws-auth config
 #  eks_admins = [
 #    for user in data.aws_iam_group.eks_admin.users :
 #    {
