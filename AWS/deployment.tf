@@ -34,8 +34,8 @@ resource "kubernetes_deployment_v1" "collator" {
 
           volume_mount {
             mount_path = "/var/lib/astar/"
-            sub_path = "/data"
-            name       = "/var/lib/astar/"
+#            sub_path = "/var/lib/astar"
+            name       = "data"
           }
 
           port {
@@ -54,8 +54,10 @@ resource "kubernetes_deployment_v1" "collator" {
           }
         }
         volume {
-          empty_dir {}
           name = "data"
+          persistent_volume_claim {
+            claim_name = "data"
+          }
         }
       }
     }
