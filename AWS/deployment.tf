@@ -60,4 +60,5 @@ resource "kubernetes_deployment_v1" "collator" {
       }
     }
   }
+  depends_on = [time_sleep.eks_node_groups_wait]
 }
