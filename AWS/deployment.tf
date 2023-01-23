@@ -40,17 +40,17 @@ resource "kubernetes_deployment_v1" "collator" {
 
           port {
             container_port = 30333
-            name = "30333"
+            name = "port30333"
           }
 
           port {
             container_port = 9933
-            name = "9933"
+            name = "port9933"
           }
 
           port {
             container_port = 9944
-            name = "9944"
+            name = "port9944"
           }
         }
         volume {
