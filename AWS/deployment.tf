@@ -33,7 +33,7 @@ resource "kubernetes_deployment_v1" "collator" {
           }
 
           volume_mount {
-            mount_path = "/var/lib/astar/"
+            mount_path = "/data"
             name       = "data"
           }
 
