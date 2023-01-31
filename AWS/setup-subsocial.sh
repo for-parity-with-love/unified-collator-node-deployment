@@ -3,7 +3,7 @@
 set -x
 set -e
 
-NODE_NAME="SUPER12-BLAIZE-NODE"
+NODE_NAME="PUPER-BLAIZE-NODE"
 
 sudo apt-get update -y
 sudo apt-get install -y \
@@ -22,24 +22,11 @@ echo \
 sudo apt-get update -y && sudo apt install docker-ce docker-ce-cli \
     containerd.io docker-compose-plugin httpie -y
 
-sudo snap install --classic certbot
 
-sudo ln -s /snap/bin/certbot /usr/bin/certbot
-
-
-
-docker run --network="host" -v "/var/lib/moonbeam-data:/data" \
--u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:v0.28.1 \
---base-path=/data \
---chain moonbeam \
+docker run -d -v node-data:/data dappforce/subsocial-parachain:latest subsocial-collator \
+--collator \
 --name="${NODE_NAME}" \
---validator \
---execution wasm \
---wasm-execution compiled \
---trie-cache-size 0 \
---db-cache 8192 \
 -- \
+--execution=wasm \
 --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
---execution wasm \
---name="${NODE_NAME}"
+--chain=kusama

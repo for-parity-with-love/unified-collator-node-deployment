@@ -7,11 +7,12 @@ module "ec2_instance" {
   subnet                      = element(module.subnets.public_subnet_ids, 1)
   name                        = "${local.environment}-collator"
 
-  ebs_volume_size             = 100
+  root_volume_size             = 100
 
 
 #  user_data                   = file("${path.module}/setup-astar.sh")
-  user_data                   = file("${path.module}/setup-moonbeam.sh")
+#  user_data                   = file("${path.module}/setup-moonbeam.sh")
+  user_data                   = file("${path.module}/setup-subsocial.sh")
 
   assign_eip_address = true
   associate_public_ip_address = true

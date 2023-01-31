@@ -28,18 +28,15 @@ sudo ln -s /snap/bin/certbot /usr/bin/certbot
 
 
 
-docker run --network="host" -v "/var/lib/moonbeam-data:/data" \
--u $(id -u ${USER}):$(id -g ${USER}) \
-purestake/moonbeam:v0.28.1 \
---base-path=/data \
---chain moonbeam \
---name="${NODE_NAME}" \
---validator \
---execution wasm \
---wasm-execution compiled \
---trie-cache-size 0 \
---db-cache 8192 \
--- \
---telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
---execution wasm \
---name="${NODE_NAME}"
+docker run -d -p 30333:30333 -p 9944:9944 -p 9933:9933  -v turing-data:/data oaknetwork/turing:1.4.0 \
+  --name="${NODE_NAME}" \
+  --base-path=/data \
+  --chain=turing \
+  --node-key="4Rfhbbn-yvb-GGT5fgnkj" \
+  --collator \
+  --force-authoring \
+  --execution=wasm \
+  --state-cache-size=0 \
+  -- \
+  --execution=wasm \
+  --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0'
