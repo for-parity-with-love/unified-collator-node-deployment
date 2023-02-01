@@ -10,9 +10,9 @@ module "ec2_instance" {
   root_volume_size             = 100
 
 
-#  user_data                   = file("${path.module}/setup-astar.sh")
+  user_data                   = file("${path.module}/setup-astar.sh")
 #  user_data                   = file("${path.module}/setup-moonbeam.sh")
-  user_data                   = file("${path.module}/setup-subsocial.sh")
+#  user_data                   = file("${path.module}/setup-subsocial.sh")
 
   assign_eip_address = true
   associate_public_ip_address = true
@@ -32,11 +32,4 @@ module "ec2_instance" {
       cidr_blocks = ["0.0.0.0/0"]
     },
   ]
-
-  #doesnt work
-#  lifecycle {
-#    ignore_changes = [
-#      ipv6_address_count, credit_specification, tags
-#    ]
-#  }
 }
