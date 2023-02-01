@@ -1,7 +1,9 @@
 # infrastructure by Terraform
 
 ### Pre-requirments
-1) 
+1) a GCP account
+2) a configured gcloud SDK
+3) kubectl
 
 ```commandline
 sometext
