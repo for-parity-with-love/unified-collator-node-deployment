@@ -1,17 +1,16 @@
 # infrastructure by Terraform
 
 ### Pre-requirments
-1) 
+1) a GCP account
+2) a configured gcloud SDK
+3) kubectl
 
+Edit `terraform.tfvars` and
 ```commandline
-sometext
+terraform apply
 ```
-sometext
 
-### Usage
-
-- If you need to deploy then use `bash deploy.sh` script.
-- If you need to upload then use `bash upload-tfvars.sh` script.
-
-<!-- BEGIN_TF_DOCS -->
-<!-- END_TF_DOCS -->
+To configure kubectl
+```commandline
+gcloud container clusters get-credentials $(terraform output -raw kubernetes_cluster_name) --region $(terraform output -raw region)
+```
