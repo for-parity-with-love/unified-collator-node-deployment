@@ -5,6 +5,12 @@
 2) a configured gcloud SDK
 3) kubectl
 
+Login to gcloud SDK
+```commandline
+gcloud init
+gcloud auth application-default login
+```
+
 Edit `terraform.tfvars` and
 ```commandline
 terraform apply
