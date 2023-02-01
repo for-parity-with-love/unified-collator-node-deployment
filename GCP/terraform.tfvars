@@ -1,2 +1,2 @@
-project_id = "raplcae value"
+project_id = "replcae value"
 region     = "us-central1"
