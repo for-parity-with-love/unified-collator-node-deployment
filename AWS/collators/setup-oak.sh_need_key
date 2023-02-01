@@ -3,9 +3,13 @@
 set -x
 set -e
 
-curl -fsSL link.sh | bash
 
-NODE_NAME="SUPER-BLAIZE-NODE"
+# Setup docker
+curl -fsSL https://raw.githubusercontent.com/for-parity-with-love/unified-collator-spin-up/master/AWS/scripts/setup-docker.sh | bash
+
+
+# Setup collator
+NODE_NAME="SUPER-NODE"
 
 docker run -d -p 30333:30333 -p 9944:9944 -p 9933:9933  -v turing-data:/data oaknetwork/turing:1.4.0 \
   --name="${NODE_NAME}" \

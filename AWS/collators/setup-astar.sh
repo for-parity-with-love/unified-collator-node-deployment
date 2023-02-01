@@ -3,9 +3,13 @@
 set -x
 set -e
 
-curl -fsSL link.sh | bash
 
-NODE_NAME="SUPER-BLAIZE-NODE"
+# Setup docker
+curl -fsSL https://raw.githubusercontent.com/for-parity-with-love/unified-collator-spin-up/master/AWS/scripts/setup-docker.sh | bash
+
+
+# Setup collator
+NODE_NAME="SUPER-NODE"
 
 docker run -d \
 --name collator \

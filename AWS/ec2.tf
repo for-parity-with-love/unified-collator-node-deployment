@@ -10,24 +10,53 @@ module "ec2_instance" {
   root_volume_size             = 100
 
 
-  user_data                   = file("${path.module}/setup-astar.sh")
-#  user_data                   = file("${path.module}/setup-moonbeam.sh")
-#  user_data                   = file("${path.module}/setup-subsocial.sh")
+  #change whatever you would like
+  user_data                   = file("${path.module}/collators/setup-astar.sh")
+#  user_data                   = file("${path.module}/collators/setup-moonbeam.sh")
+#  user_data                   = file("${path.module}/collators/setup-subsocial.sh")
 
   assign_eip_address = true
   associate_public_ip_address = true
   security_group_rules = [
     {
       type        = "egress"
-      from_port   = 0
-      to_port     = 65535
+      from_port   = 30333
+      to_port     = 30333
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+    },
+    {
+      type        = "egress"
+      from_port   = 9933
+      to_port     = 9933
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+    },
+    {
+      type        = "egress"
+      from_port   = 9944
+      to_port     = 9944
       protocol    = "-1"
       cidr_blocks = ["0.0.0.0/0"]
     },
     {
       type        = "ingress"
-      from_port   = 0
-      to_port     = 65535
+      from_port   = 30333
+      to_port     = 30333
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+    },
+    {
+      type        = "ingress"
+      from_port   = 9933
+      to_port     = 9933
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+    },
+    {
+      type        = "ingress"
+      from_port   = 9944
+      to_port     = 9944
       protocol    = "-1"
       cidr_blocks = ["0.0.0.0/0"]
     },
