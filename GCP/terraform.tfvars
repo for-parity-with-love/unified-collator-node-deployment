@@ -1,2 +1,2 @@
-project_id = "replcae value"
+project_id = "replace value"
 region     = "us-central1"
