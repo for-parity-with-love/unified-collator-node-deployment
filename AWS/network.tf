@@ -4,19 +4,18 @@ locals {
   final_first_cidr = join(".", [local.first_octet, local.second_octet, "0", "0/16"])
   incremented_second_octet =  format(random_integer.octet2.result + "1")
   final_second_cidr =  replace(local.final_first_cidr, "${local.second_octet}.0.0/16", "${local.incremented_second_octet}.0.0/16")
-
 }
 
 data "aws_availability_zones" "available" {}
 
 resource "random_integer" "octet1" {
   min     = 1
-  max     = 254
+  max     = 225
 }
 
 resource "random_integer" "octet2" {
   min     = 0
-  max     = 254
+  max     = 225
 }
 
 module "vpc" {
