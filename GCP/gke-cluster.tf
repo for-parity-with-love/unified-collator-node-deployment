@@ -78,7 +78,7 @@ resource "google_compute_router_nat" "nat" {
   nat_ip_allocate_option             = "MANUAL_ONLY"
 
   subnetwork {
-    name                    = google_compute_subnetwork.private.id
+    name                    = google_compute_subnetwork.subnet.id
     source_ip_ranges_to_nat = ["ALL_IP_RANGES"]
   }
 
@@ -153,9 +153,8 @@ resource "google_container_node_pool" "primary_nodes" {
   }
   autoscaling {
     min_node_count = 3
-	max_node_count = 11
+    max_node_count = 11
   }
-  create_before_destroy = true
 }
 
 
@@ -167,7 +166,7 @@ resource "google_container_node_pool" "primary_nodes" {
 # # To learn how to schedule deployments and services using the provider, go here: https://learn.hashicorp.com/tutorials/terraform/kubernetes-provider.
 
 provider "kubernetes" {
-  load_config_file = "false"
+  #load_config_file = "false"
 
   host     = google_container_cluster.primary.endpoint
   username = var.gke_username
