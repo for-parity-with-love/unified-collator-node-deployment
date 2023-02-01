@@ -23,6 +23,7 @@ select PROVIDER in "${PROVIDER_LIST[@]}"
 do
     case ${PROVIDER} in
         "AWS")
+        cd AWS/
             PS3="Please select workspace of ${PROVIDER} project to deploy: "
             select WORKSPACE in "${WORKSPACE_LIST[@]}"
             do
@@ -95,6 +96,7 @@ do
             exit
             ;;
         "GCP")
+        cd GCP/
             PS3="Please select workspace of ${PROVIDER} project to deploy: "
             select WORKSPACE in "${WORKSPACE_LIST[@]}"
             do

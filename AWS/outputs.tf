@@ -2,8 +2,8 @@ output "account_id" {
   value = data.aws_caller_identity.current.account_id
 }
 
-output "eks_cluster_name" {
-  value = module.eks_cluster.eks_cluster_id
+output "ec2_ip_address" {
+  value = module.ec2_instance.public_ip
 }
 
 output "environment" {
