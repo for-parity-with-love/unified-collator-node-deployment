@@ -8,11 +8,9 @@
 Edit `terraform.tfvars` and
 ```commandline
 terraform apply
-
 ```
 
 To configure kubectl
 ```commandline
 gcloud container clusters get-credentials $(terraform output -raw kubernetes_cluster_name) --region $(terraform output -raw region)
-
 ```
