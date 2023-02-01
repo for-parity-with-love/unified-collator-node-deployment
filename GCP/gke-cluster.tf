@@ -96,7 +96,6 @@ resource "google_compute_address" "nat" {
 # GKE cluster
 resource "google_container_cluster" "primary" {
   name     = "${var.project_id}-gke"
-  node_version = "1.24"
   min_master_version = "1.24"
   location = var.region
   remove_default_node_pool = true
