@@ -1,0 +1,22 @@
+---
+version: 2
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+    labels: ["dependencies"]
+    commit-message:
+      prefix: "dependencies: "
+
+
+  - package-ecosystem: terraform
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    labels: ["dependencies"]
+    commit-message:
+      prefix: "dependencies: "

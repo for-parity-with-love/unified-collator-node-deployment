@@ -14,7 +14,7 @@ aws_profile_name                    = "blaize"
 
 
 ### Usage
-- After each edit tf vars do not forget use `bash upload-tfvars.sh` to upload trfars file to bucket.
+- After each edit tfvars do not forget use `bash upload-tfvars.sh` to upload trfars file to bucket.
 - If you need to deploy then use `bash deploy.sh` script.
 
 
