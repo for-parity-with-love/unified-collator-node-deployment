@@ -1,0 +1,23 @@
+---
+name: New line checker
+
+
+on:
+  workflow_dispatch:
+  push:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Ascertaining all files end with a newline
+        uses: fernandrone/linelint@master
+        id: linelint
