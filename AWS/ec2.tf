@@ -11,9 +11,9 @@ module "ec2_instance" {
 
 
   # change whatever you would like
-  user_data = file("${path.module}/collators/setup-astar.sh")
-  # user_data                   = file("${path.module}/collators/setup-moonbeam.sh")
-  # user_data                   = file("${path.module}/collators/setup-subsocial.sh")
+  user_data = file("${path.module}/scripts/setup-astar.sh")
+  # user_data                   = file("${path.module}/scripts/setup-moonbeam.sh")
+  # user_data                   = file("${path.module}/scripts/setup-subsocial.sh")
 
   assign_eip_address          = true
   associate_public_ip_address = true
