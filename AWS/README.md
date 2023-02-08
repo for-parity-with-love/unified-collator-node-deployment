@@ -1,29 +1,3 @@
-# infrastructure by Terraform
-
-### Pre-requirments
-1) You need to create IAM user with programmatic access (full administrator access) and then fill and then fill credentials to `~/.aws/credentials` file, eg.:
-
-```commandline
-[blaize]
-aws_access_key_id = KEYKEYKEYKEYKEYKEYKEYKEYKEY
-aws_secret_access_key = KEYKEYKEYKEYKEYKEYKEYKEYKEY
-```
-
-2) Then you should create a bucket because we will store your state and tfvars (file with variables) in bucket.
-after it would be done, you will need to edit `deploy.sh` and `upload-tfvars.sh` scripts and fill `NAME_OF_THE_BUCKET` and `PROFILE` variables
-
-3) Open tfvar file and edit these variables
-```
-aws_region                          = "eu-central-1"
-aws_profile_name                    = "blaize" 
-```
-
-
-### Usage
-
-- If you need to deploy then use `bash deploy.sh` script.
-- If you need to upload then use `bash upload-tfvars.sh` script.
-
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -31,20 +5,20 @@ aws_profile_name                    = "blaize"
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.48.0 |
-| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.16.1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 4.48.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.4.3 |
+| <a name="provider_random"></a> [random](#provider\_random) | n/a |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_ec2_instance"></a> [ec2\_instance](#module\_ec2\_instance) | cloudposse/ec2-instance/aws | 0.45.2 |
+| <a name="module_ec2_label"></a> [ec2\_label](#module\_ec2\_label) | cloudposse/label/null | 0.25.0 |
 | <a name="module_label"></a> [label](#module\_label) | cloudposse/label/null | 0.25.0 |
 | <a name="module_subnets"></a> [subnets](#module\_subnets) | cloudposse/dynamic-subnets/aws | 2.0.4 |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | cloudposse/vpc/aws | 1.1.1 |
