@@ -1,3 +1,22 @@
+# AWS infrastructure
+
+### Pre-requirments
+1) AWS cli with configured access. 
+2) Created S3 bucket
+
+### Configurations
+1) Open AWS  => **EC2** => **Key Pairs** and add your ssh key and after it edit **ec2.tf** file and change **ssh_key_pair** value. 
+2) Edit `deploy.sh` and `upload-tfvars.sh` scripts and fill `NAME_OF_THE_BUCKET` and `PROFILE` variables. (Name of the profile can be find in `~/.aws/credentials`)
+3) Rename `backend.tmp` to `backend.tf` and edit `bucket`, `region`, `profile` values inside.
+4) Edit `tfvarf/*.tfars` and change also all needed values
+
+
+### Usage
+- After each edit tfvars do not forget use `bash upload-tfvars.sh` to upload trfars file to bucket.
+- If you need to deploy then use `bash deploy.sh` script.
+
+
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
