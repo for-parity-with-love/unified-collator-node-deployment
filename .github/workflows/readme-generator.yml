@@ -1,0 +1,37 @@
+---
+name: Generate terraform docs
+
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+permissions: write-all
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  Generating:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: AWS docs
+        uses: terraform-docs/gh-actions@v1.0.0
+        with:
+          working-dir: ./AWS/
+          git-push: true
+          output-file: README.md
+          config-file: ".terraform-docs.yml"
+
+      - name: GCP docs
+        uses: terraform-docs/gh-actions@v1.0.0
+        with:
+          working-dir: ./GCP/
+          git-push: true
+          output-file: README.md
+          config-file: ".terraform-docs.yml"

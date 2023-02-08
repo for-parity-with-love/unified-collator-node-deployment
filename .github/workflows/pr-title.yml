@@ -1,0 +1,53 @@
+---
+name: PR title conformance
+
+
+on:
+  workflow_dispatch:
+  pull_request_target:
+    types:
+      - opened
+      - reopened
+      - edited
+      - synchronize
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Checking if all files end with a newline
+        uses: fernandrone/linelint@master
+        id: linelint
+
+      - name: Lint PR
+        uses: aslafy-z/conventional-pr-title-action@v3
+        with:
+          preset: conventional-changelog-angular@^5.0.6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Comment for PR title conformance
+        if: failure()
+        uses: peter-evans/create-or-update-comment@v2.1.0
+        with:
+          issue-number: ${{tojson(github.event.number)}}
+          body: |
+            Please ensure your PR conforms to conventional commits (see https://www.conventionalcommits.org).
+            Commits MUST be prefixed with a type, which consists of one of the following:
+            * **build**: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+            * **ci**: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+            * **docs**: Documentation only changes
+            * **feat**: A new feature
+            * **fix**: A bug fix
+            * **perf**: A code change that improves performance
+            * **refactor**: A code change that neither fixes a bug nor adds a feature
+            * **dependencies**: Automated dependency updates built into GitHub
+            * **All list of possible labes you can find here**: https://github.com/Finrocks/global-infrastructure/labels
