@@ -10,6 +10,10 @@ variable "aws_profile_name" {
   type = string
 }
 
+variable "docker_image" {
+  type = string
+}
+
 variable "chain_name" {
   type = string
 }

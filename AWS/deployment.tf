@@ -24,10 +24,10 @@ resource "kubernetes_deployment_v1" "collator" {
 
       spec {
         container {
-          image = "staketechnologies/astar-collator:latest"
+          image = "${var.docker_image}"
           name  = "collator"
           command = ["astar-collator"]
-          args = ["--collator", "--rpc-cors=all", "--name", "${local.environment}-collator", "--chain", "astar", "--telemetry-url", "wss://telemetry.polkadot.io/submit/ 0", "--execution", "wasm"]
+          args = ["--collator", "--rpc-cors=all", "--name", "${var.node_name}", "--chain", "${var.chain_name}", "--telemetry-url", "wss://telemetry.polkadot.io/submit/ 0", "--execution", "wasm"]
 
           security_context {
             privileged = true
