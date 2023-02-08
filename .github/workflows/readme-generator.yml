@@ -25,7 +25,7 @@ jobs:
         with:
           working-dir: ./AWS/
           git-push: true
-          output-file: README.md
+          output-file: README.MD
           config-file: ".terraform-docs.yml"
 
       - name: GCP docs
@@ -33,5 +33,5 @@ jobs:
         with:
           working-dir: ./GCP/
           git-push: true
-          output-file: README.md
+          output-file: README.MD
           config-file: ".terraform-docs.yml"
