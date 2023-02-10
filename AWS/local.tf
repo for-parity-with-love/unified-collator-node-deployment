@@ -1,6 +1,6 @@
 locals {
-  environment             = lower(terraform.workspace)
-  account_id = data.aws_caller_identity.current.account_id
+  environment = lower(terraform.workspace)
+  account_id  = data.aws_caller_identity.current.account_id
 
   public_subnets_additional_tags = {
     "kubernetes.io/role/elb" : 1
@@ -13,7 +13,7 @@ locals {
   }
 
   tags = {
-    "Project"   = var.project_name
+    "Project"     = var.project_name
     "Environment" = local.environment
   }
 }

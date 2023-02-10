@@ -5,13 +5,13 @@ project_name = "collator"
 
 node_name         = "blaize-node"
 
-chain_name   = "kusama"
-docker_image = "dappforce/subsocial-parachain:latest"
-container_command = "subsocial-collator"
+chain_name   = "astar"
+docker_image = "staketechnologies/astar-collator:latest"
+container_command = "astar-collator"
 
 eks_node_groups = [
   {
-    name                = "subsocial"
+    name                = "astar"
     desired_size        = 1
     min_size            = 1
     max_size            = 1
@@ -22,7 +22,7 @@ eks_node_groups = [
     instance_types      = ["m5.xlarge"]
     ami_release_version = ["1.24.7-20221112"]
     kubernetes_labels   = {
-      "node-group-purpose" = "collator"
+      "node-group-purpose" = "astar"
     }
   },
 ]

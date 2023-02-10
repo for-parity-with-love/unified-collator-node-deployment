@@ -1,8 +1,8 @@
 resource "kubernetes_deployment_v1" "collator" {
   metadata {
-    name = "collator"
+    name = var.project_name
     labels = {
-      name = "collator"
+      name = var.project_name
     }
   }
 
@@ -11,22 +11,22 @@ resource "kubernetes_deployment_v1" "collator" {
 
     selector {
       match_labels = {
-        name = "collator"
+        name = var.project_name
       }
     }
 
     template {
       metadata {
         labels = {
-          name = "collator"
+          name = var.project_name
         }
       }
 
       spec {
         container {
           image = "${var.docker_image}"
-          name  = "collator"
-          command = ["astar-collator"]
+          name  = var.project_name
+          command = ["${var.container_command}"]
           args = ["--collator", "--rpc-cors=all", "--name", "${var.node_name}", "--chain", "${var.chain_name}", "--telemetry-url", "wss://telemetry.polkadot.io/submit/ 0", "--execution", "wasm"]
 
           security_context {
@@ -48,5 +48,5 @@ resource "kubernetes_deployment_v1" "collator" {
       }
     }
   }
-  depends_on = [module.eks_node_groups, aws_eks_addon.coredns]
+  depends_on = [time_sleep.eks_node_groups_wait, aws_eks_addon.coredns]
 }

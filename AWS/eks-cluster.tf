@@ -62,12 +62,6 @@ module "eks_cluster" {
       resolve_conflicts        = "OVERWRITE"
       service_account_role_arn = null
     },
-#    {
-#      addon_name               = "coredns"
-#      addon_version            = format("%s-eksbuild.3", local.aws_core_dns_version)
-#      resolve_conflicts        = "OVERWRITE"
-#      service_account_role_arn = null
-#    }
   ]
 
   context = module.label.context
