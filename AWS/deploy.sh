@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 NAME_OF_THE_BUCKET="blaize-collator-bucket"
 PROFILE="blaize"
@@ -12,70 +11,61 @@ PROVIDER="AWS"
 #if no need debug the uncomment this one
 export TF_LOG="ERROR"
 
-#increase  parallelism (performance). If your terraform get stuck or crash then need ti reduce number of parallels
+#increase  parallelism (performance). If your terraform get stuck or crash then need to reduce number of parallels
 export TFE_PARALLELISM=75
 
 
-WORKSPACE_LIST=("test" "dev" "prod" "Quit")
-PS3="Please select workspace of ${PROVIDER} project to deploy: "
+WORKSPACE_LIST=("astar" "moonbeam" "subsocial" "Quit")
+PS3="Please select desired collator to deploy: "
             select WORKSPACE in "${WORKSPACE_LIST[@]}"
             do
                 case $WORKSPACE in
-                    "test")
-                        echo "${WORKSPACE} workspace of ${PROVIDER} project was chosen"
-                        echo "terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars"
+                    "astar")
+                        echo "${WORKSPACE} was chosen..."
                         echo 'making setup...'
-                        if grep -q ${PROVIDER} backend.tf
-                        then
-                            #found
-                            sleep 0.1
+                        TERRAFORM_COMMAND=$(terraform workspace list | grep ${WORKSPACE})
+                        if [[ -z "${TERRAFORM_COMMAND}" ]]; then
+                          terraform workspace new ${WORKSPACE}
                         else
-                            #not found
-                             cat backend/${PROVIDER}-backend.tmp | tee backend.tf > /dev/null 2>&1
-                             terraform init -reconfigure
+                          terraform workspace select ${WORKSPACE}
                         fi
-                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${PROVIDER}/${WORKSPACE}-collator.tfvars tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars --profile ${PROFILE}
+                        echo "terraform apply -var-file tfvars/${WORKSPACE}.tfvars"
+                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${WORKSPACE}.tfvars tfvars/${WORKSPACE}.tfvars --profile ${PROFILE}
                         terraform workspace select ${WORKSPACE}
-                        terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars
-                        echo "terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars"
+                        terraform apply -var-file tfvars/${WORKSPACE}.tfvars
+                        echo "terraform apply -var-file tfvars/${WORKSPACE}.tfvars"
                         exit
                         ;;
-                    "dev")
-                        echo "${WORKSPACE} workspace in ${PROVIDER} project was chosen"
-                        echo "terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars"
+                    "moonbeam")
+                        echo "${WORKSPACE} was chosen..."
                         echo 'making setup...'
-                        if grep -q ${PROVIDER}  backend.tf
-                        then
-                            #found
-                            sleep 0.1
+                        TERRAFORM_COMMAND=$(terraform workspace list | grep ${WORKSPACE})
+                        if [[ -z "${TERRAFORM_COMMAND}" ]]; then
+                          terraform workspace new ${WORKSPACE}
                         else
-                            #not found
-                            cat backend/${PROVIDER}-backend.tmp | tee backend.tf > /dev/null 2>&1
-                           terraform init -reconfigure
+                          terraform workspace select ${WORKSPACE}
                         fi
-                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${PROVIDER}/${WORKSPACE}-collator.tfvars tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars --profile ${PROFILE}
+                        echo "terraform apply -var-file tfvars/${WORKSPACE}.tfvars"
+                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${WORKSPACE}.tfvars tfvars/${WORKSPACE}.tfvars --profile ${PROFILE}
                         terraform workspace select ${WORKSPACE}
-                        terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars
-                        echo "terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars"
+                        terraform apply -var-file tfvars/${WORKSPACE}.tfvars
+                        echo "terraform apply -var-file tfvars/${WORKSPACE}.tfvars"
                         exit
                         ;;
-                    "prod")
-                        echo "${WORKSPACE} workspace in ${PROVIDER} project was chosen"
-                        echo "terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars"
+                    "subsocial")
+                        echo "${WORKSPACE} was chosen..."
                         echo 'making setup...'
-                        if grep -q ${PROVIDER}  backend.tf
-                        then
-                            #found
-                            sleep 0.1
+                        TERRAFORM_COMMAND=$(terraform workspace list | grep ${WORKSPACE})
+                        if [[ -z "${TERRAFORM_COMMAND}" ]]; then
+                          terraform workspace new ${WORKSPACE}
                         else
-                            #not found
-                            cat backend/${PROVIDER}-backend.tmp | tee backend.tf > /dev/null 2>&1
-                            terraform init -reconfigure
+                          terraform workspace select ${WORKSPACE}
                         fi
-                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${PROVIDER}/${WORKSPACE}-collator.tfvars tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars --profile ${PROFILE}
+                        echo "terraform apply -var-file tfvars/${WORKSPACE}.tfvars"
+                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${WORKSPACE}.tfvars tfvars/${WORKSPACE}.tfvars --profile ${PROFILE}
                         terraform workspace select ${WORKSPACE}
-                        terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars
-                        echo "terraform apply -var-file tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars"
+                        terraform apply -var-file tfvars/${WORKSPACE}.tfvars
+                        echo "terraform apply -var-file tfvars/${WORKSPACE}.tfvars"
                         exit
                         ;;
                     "Quit")

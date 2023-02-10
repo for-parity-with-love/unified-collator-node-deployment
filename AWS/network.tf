@@ -47,5 +47,9 @@ module "subnets" {
   ipv6_cidr_block    = [module.vpc.vpc_ipv6_cidr_block]
   ipv4_cidr_block    = [module.vpc.vpc_cidr_block]
 
+
+  public_subnets_additional_tags  = local.public_subnets_additional_tags
+  private_subnets_additional_tags = local.private_subnets_additional_tags
+
   context = module.vpc_label.context
 }

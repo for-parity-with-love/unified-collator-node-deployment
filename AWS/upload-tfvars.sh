@@ -7,10 +7,8 @@ PROFILE="blaize"
 
 
 PROVIDER_LIST=("AWS" "GCP")
-WORKSPACE_LIST=("test" "dev" "prod")
+WORKSPACE_LIST=("astar" "moonbeam" "subsocial")
 
-for PROVIDER in ${PROVIDER_LIST[@]}; do
-  for WORKSPACE in ${WORKSPACE_LIST[@]}; do
-    aws s3 cp tfvars/${PROVIDER}-${WORKSPACE}-collator.tfvars s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${PROVIDER}/${WORKSPACE}-collator.tfvars --profile ${PROFILE}
-  done
+for WORKSPACE in ${WORKSPACE_LIST[@]}; do
+  aws s3 cp tfvars/${WORKSPACE}.tfvars s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${WORKSPACE}.tfvars --profile ${PROFILE}
 done
