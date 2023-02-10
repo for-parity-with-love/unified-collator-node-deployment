@@ -1,18 +1,18 @@
 # AWS infrastructure
 
 ### Pre-requirments
-1) AWS cli with configured access. 
+1) installed AWS cli with configured access. 
 2) Created S3 bucket
+3) installed kubectl
 
 ### Configurations
-1) Open AWS  => **EC2** => **Key Pairs** and add your ssh key and after it edit **ec2.tf** file and change **ssh_key_pair** value. 
-2) Edit `deploy.sh` and `upload-tfvars.sh` scripts and fill `NAME_OF_THE_BUCKET` and `PROFILE` variables. (Name of the profile can be find in `~/.aws/credentials`)
-3) Rename `backend.tmp` to `backend.tf` and edit `bucket`, `region`, `profile` values inside.
-4) Edit `tfvarf/*.tfars` and change also all needed values
+1) Edit `deploy.sh` and `upload-tfvars.sh` scripts and fill `NAME_OF_THE_BUCKET` and `PROFILE` variables. (Name of the profile can be find in `~/.aws/credentials` after configuration aws cli)
+2) Rename `backend.tmp` to `backend.tf` and edit `bucket`, `region`, `profile` values inside. 
+3) Edit `tfvarf/*.tfars` and change also all needed values
 
 
 ### Usage
-- After each edit tfvars do not forget use `bash upload-tfvars.sh` to upload trfars file to bucket.
+- After editing tfvars do not forget use `bash upload-tfvars.sh` to upload trfars file to bucket.
 - If you need to deploy then use `bash deploy.sh` script.
 
 
