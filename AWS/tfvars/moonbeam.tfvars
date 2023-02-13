@@ -5,9 +5,8 @@ project_name = "collator"
 
 node_name         = "blaize-node"
 
-chain_name   = "astar"
-docker_image = "staketechnologies/astar-collator:latest"
-container_command = "astar-collator"
+chain_name   = "moonbeam"
+docker_image = "purestake/moonbeam:v0.28.1"
 
 eks_node_groups = [
   {

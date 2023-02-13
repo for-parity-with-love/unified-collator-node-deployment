@@ -5,13 +5,13 @@ project_name = "collator"
 
 node_name         = "blaize-node"
 
-chain_name   = "kusama"
-docker_image = "dappforce/subsocial-parachain:latest"
-container_command = "subsocial-collator"
+chain_name   = "karura"
+docker_image = "acala/karura-node:latest"
+
 
 eks_node_groups = [
   {
-    name                = "subsocial"
+    name                = "karura"
     desired_size        = 1
     min_size            = 1
     max_size            = 1

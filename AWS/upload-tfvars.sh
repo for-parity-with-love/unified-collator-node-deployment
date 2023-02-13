@@ -7,7 +7,7 @@ PROFILE="blaize"
 
 
 PROVIDER_LIST=("AWS" "GCP")
-WORKSPACE_LIST=("astar" "moonbeam" "subsocial")
+WORKSPACE_LIST=("astar" "moonbeam" "karura")
 
 for WORKSPACE in ${WORKSPACE_LIST[@]}; do
   aws s3 cp tfvars/${WORKSPACE}.tfvars s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${WORKSPACE}.tfvars --profile ${PROFILE}

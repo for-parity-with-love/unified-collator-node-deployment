@@ -11,6 +11,7 @@ variable "aws_profile_name" {
 }
 
 variable "container_command" {
+  default = ""
   type = string
 }
 
