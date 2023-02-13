@@ -11,6 +11,8 @@ gcloud init
 gcloud auth application-default login
 ```
 
+### Run collator
+
 Configure variables in [terraform.tfvars](GCP/terraform.tfvars)
 `project_id` - GCP organization project ID
 `region`     - GCP deployment region
