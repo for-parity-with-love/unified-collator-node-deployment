@@ -1,9 +1,9 @@
 # AWS infrastructure
 
 ### Pre-requirments
-1) installed AWS cli with configured access. 
+1) Installed AWS cli with configured access. 
 2) Created S3 bucket
-3) installed kubectl
+3) Installed kubectl (optional for interacting with EKS)
 
 ### Configurations
 1) Edit `deploy.sh`, `destroy.sh` and `upload-tfvars.sh` scripts and fill `NAME_OF_THE_BUCKET` and `PROFILE` variables. (Name of the profile can be find in `~/.aws/credentials` after configuration aws cli)
