@@ -13,7 +13,7 @@ gcloud auth application-default login
 
 ### Run collator
 
-Configure variables in [terraform.tfvars](GCP/terraform.tfvars)
+1. Configure variables in [terraform.tfvars](GCP/terraform.tfvars)
  - `project_id` - GCP organization project ID
  - `region`     - GCP deployment region
  - `chain_name` - the name of collator chain
@@ -21,14 +21,14 @@ Configure variables in [terraform.tfvars](GCP/terraform.tfvars)
 
 
 
-Configure deployment in [terraform.tfvars](GCP/kubernetes.tf)
+2. Configure deployment in [terraform.tfvars](GCP/kubernetes.tf)
  - `image` - docker image for the collator
  - `command` - collator command name
  - `args` - collator arguments, no spaces allowed in arguments - separate them with `", "` instead of spaces
 
 
 
-`optional` configure deployment parameters for GKE cluster in [gke-cluster.tf](GCP/gke-cluster.tf)
+3. `optional` configure deployment parameters for GKE cluster in [gke-cluster.tf](GCP/gke-cluster.tf)
  - `min_master_version` - minimal kubernetes version for master, GCP will update it automatically, and we can't prevent it
  - `disk_size_gb`       - disk size of each GKE node
  - `cluster_cidr`       - cidr for GKE cluster, make sure to edit cidr in [network.tf](GCP/network.tf) if editing `cluster_cidr`
@@ -41,7 +41,7 @@ Configure deployment in [terraform.tfvars](GCP/kubernetes.tf)
 
 
 
-Run deployment
+4. Run deployment
 ```commandline
 terraform apply
 ```
