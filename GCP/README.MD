@@ -4,8 +4,7 @@
 1) GCP account
 2) Configured gcloud SDK
 3) Installed kubectl
-
-Login to gcloud SDK
+4) Login to gcloud SDK
 ```commandline
 gcloud init
 gcloud auth application-default login
