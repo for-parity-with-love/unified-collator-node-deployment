@@ -37,6 +37,7 @@ gcloud auth application-default login
  - `nodes_number`       - initial nodes number
  - `total_min_nodes`    - min nodes number for autoscaler
  - `total_max_nodes`    - max nodes number for autoscaler, quota 8 for basic accounts
+ after any change GKE cluster is re-created
 
 
 4. `optional` copy file [backend.tf](GCP/backend/backend.tf) to GCP mail folder if we need to store tfstate in the google storage bucket
