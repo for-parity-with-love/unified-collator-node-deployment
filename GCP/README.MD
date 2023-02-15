@@ -27,7 +27,7 @@ gcloud auth application-default login
 
 
 
-3. `optional` configure deployment parameters for GKE cluster in [gke-cluster.tf](GCP/gke-cluster.tf)
+3. `optional` configure deployment parameters for GKE cluster in [gke-cluster.tf](GCP/gke-cluster.tf) ,  after any change GKE cluster is re-created
  - `min_master_version` - minimal kubernetes version for master, GCP will update it automatically, and we can't prevent it
  - `disk_size_gb`       - disk size of each GKE node
  - `cluster_cidr`       - cidr for GKE cluster, make sure to edit cidr in [network.tf](GCP/network.tf) if editing `cluster_cidr`
@@ -37,7 +37,7 @@ gcloud auth application-default login
  - `nodes_number`       - initial nodes number
  - `total_min_nodes`    - min nodes number for autoscaler
  - `total_max_nodes`    - max nodes number for autoscaler, quota 8 for basic accounts
- after any change GKE cluster is re-created
+
 
 
 4. `optional` copy file [backend.tf](GCP/backend/backend.tf) to GCP mail folder if we need to store tfstate in the google storage bucket
