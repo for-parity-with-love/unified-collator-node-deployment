@@ -39,8 +39,10 @@ gcloud auth application-default login
  - `total_max_nodes`    - max nodes number for autoscaler, quota 8 for basic accounts
 
 
+4. `optional` copy file [backend.tf](GCP/backend/backend.tf) to GCP mail folder if we need to store tfstate in the google storage bucket
 
-4. Run deployment
+
+5. Run deployment
 ```commandline
 terraform apply
 ```
