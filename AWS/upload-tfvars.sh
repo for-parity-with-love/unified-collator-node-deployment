@@ -1,9 +1,10 @@
 #!/bin/bash
 
-#set -x       #uncomment this line if you need debug
+# uncomment this line if you need debug
+# set -x
 
-NAME_OF_THE_BUCKET="blaize-collator-bucket"
-PROFILE="blaize"
+NAME_OF_THE_BUCKET="collator-bucket"
+PROFILE="collator"
 
 
 PROVIDER_LIST=("AWS" "GCP")

@@ -1,9 +1,8 @@
 #!/bin/bash
 
-NAME_OF_THE_BUCKET="blaize-collator-bucket"
-PROFILE="blaize"
+NAME_OF_THE_BUCKET="collator-bucket"
+PROFILE="collator"
 
-PROVIDER="AWS"
 #uncomment for debug purpose
 #set -x
 #export TF_LOG="TRACE"
@@ -32,7 +31,7 @@ PS3="Please select desired collator to deploy: "
                         echo "terraform apply -var-file tfvars/${WORKSPACE}.tfvars"
                         aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${WORKSPACE}.tfvars tfvars/${WORKSPACE}.tfvars --profile ${PROFILE}
                         terraform workspace select ${WORKSPACE}
-                        cat deployments/${WORKSPACE}.example > deployment.tf
+                        cat deployments/collator_with_command.example > deployment.tf
                         terraform apply -var-file tfvars/${WORKSPACE}.tfvars
                         echo "terraform apply -var-file tfvars/${WORKSPACE}.tfvars"
                         exit
@@ -49,7 +48,7 @@ PS3="Please select desired collator to deploy: "
                         echo "terraform apply -var-file tfvars/${WORKSPACE}.tfvars"
                         aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${WORKSPACE}.tfvars tfvars/${WORKSPACE}.tfvars --profile ${PROFILE}
                         terraform workspace select ${WORKSPACE}
-                        cat deployments/${WORKSPACE}.example > deployment.tf
+                        cat deployments/collator.example > deployment.tf
                         terraform apply -var-file tfvars/${WORKSPACE}.tfvars
                         echo "terraform apply -var-file tfvars/${WORKSPACE}.tfvars"
                         exit
@@ -66,7 +65,7 @@ PS3="Please select desired collator to deploy: "
                         echo "terraform apply -var-file tfvars/${WORKSPACE}.tfvars"
                         aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${WORKSPACE}.tfvars tfvars/${WORKSPACE}.tfvars --profile ${PROFILE}
                         terraform workspace select ${WORKSPACE}
-                        cat deployments/${WORKSPACE}.example > deployment.tf
+                        cat deployments/collator.example > deployment.tf
                         terraform apply -var-file tfvars/${WORKSPACE}.tfvars
                         echo "terraform apply -var-file tfvars/${WORKSPACE}.tfvars"
                         exit

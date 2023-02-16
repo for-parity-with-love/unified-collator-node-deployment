@@ -1,13 +1,14 @@
 aws_region       = "eu-central-1"
-aws_profile_name = "blaize"
+aws_profile_name = "collator"
 
 project_name = "collator"
 
-node_name         = "blaize-node"
 
-chain_name   = "astar"
 docker_image = "staketechnologies/astar-collator:latest"
-container_command = "astar-collator"
+container_command = ["astar-collator"]
+
+#main configuration is making here. For more information take a look collator documentation.
+container_args = ["--collator", "--rpc-cors=all", "--name", "collator-node", "--chain", "astar", "--telemetry-url", "wss://telemetry.polkadot.io/submit/ 0", "--execution", "wasm", "--wasm-execution","compiled"]
 
 eks_node_groups = [
   {
