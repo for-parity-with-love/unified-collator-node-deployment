@@ -2,25 +2,21 @@ variable "aws_region" {
   type = string
 }
 
-variable "node_name" {
-  type = string
-}
-
 variable "aws_profile_name" {
   type = string
 }
 
 variable "container_command" {
-  default = ""
-  type = string
+  default = [""]
+  type = list(string)
 }
 
 variable "docker_image" {
   type = string
 }
 
-variable "chain_name" {
-  type = string
+variable "container_args" {
+  type = list(string)
 }
 
 variable "project_name" {
@@ -30,9 +26,9 @@ variable "project_name" {
 variable "eks_node_groups" {
   type = list(object({
     name                = optional(string, "default")
-    desired_size        = optional(number, "3")
-    min_size            = optional(number, "3")
-    max_size            = optional(number, "11")
+    desired_size        = optional(number, "1")
+    min_size            = optional(number, "1")
+    max_size            = optional(number, "1")
     disk_size           = optional(number, "20")
     multi_az            = optional(bool, "true")
     kubernetes_version  = optional(string, "1.23")
