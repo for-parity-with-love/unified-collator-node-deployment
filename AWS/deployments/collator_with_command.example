@@ -1,4 +1,4 @@
-resource "kubernetes_deployment_v1" "moonbeam" {
+resource "kubernetes_deployment_v1" "astar" {
   metadata {
     name = var.project_name
     labels = {
@@ -24,9 +24,10 @@ resource "kubernetes_deployment_v1" "moonbeam" {
 
       spec {
         container {
-          image = "${var.docker_image}"
+          image = var.docker_image
           name  = var.project_name
-          args = ["--collator", "--rpc-cors=all", "--name", "${var.node_name}", "--chain", "${var.chain_name}", "--telemetry-url", "wss://telemetry.polkadot.io/submit/ 0", "--execution", "wasm", "--wasm-execution","compiled"]
+          command = var.container_command
+          args = var.container_args
 
           security_context {
             privileged = true
