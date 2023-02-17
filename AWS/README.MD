@@ -6,9 +6,10 @@
 3) Installed kubectl (optional for interacting with EKS)
 
 ### Configurations
-1) Edit `deploy.sh`, `destroy.sh` and `upload-tfvars.sh` scripts and fill `NAME_OF_THE_BUCKET` and `PROFILE` variables. (Name of the profile can be find in `~/.aws/credentials` after configuration aws cli)
-2) Rename `backend.tmp` to `backend.tf` and edit `bucket`, `region`, `profile` values inside. 
-3) Edit `tfvarf/*.tfars` and change also all needed values
+1) Rename `backend.tmp` to `backend.tf` and edit `bucket`, `region`, `profile` values inside. 
+
+### Optional Configurations
+1) Edit `examples/deploy.sh`, `examples/destroy.sh` scripts and fill `PROFILE` variables. (Name of the profile can be find in `~/.aws/credentials` after configuration aws cli)
 
 
 ### Usage

@@ -1,4 +1,4 @@
-resource "kubernetes_deployment_v1" "collator" {
+resource "kubernetes_deployment_v1" "karura" {
   metadata {
     name = var.project_name
     labels = {
@@ -24,10 +24,9 @@ resource "kubernetes_deployment_v1" "collator" {
 
       spec {
         container {
-          image = var.docker_image
+          image = "${var.docker_image}"
           name  = var.project_name
-          command = var.container_command
-          args = var.container_args
+          args = ["--collator", "--name", "${var.node_name}", "--chain", "${var.chain_name}", "--execution", "wasm"]
 
           security_context {
             privileged = true

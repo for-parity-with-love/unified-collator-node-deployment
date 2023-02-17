@@ -24,9 +24,9 @@ resource "kubernetes_deployment_v1" "moonbeam" {
 
       spec {
         container {
-          image = var.docker_image
+          image = "${var.docker_image}"
           name  = var.project_name
-          args = var.container_args
+          args = ["--collator", "--rpc-cors=all", "--name", "${var.node_name}", "--chain", "${var.chain_name}", "--telemetry-url", "wss://telemetry.polkadot.io/submit/ 0", "--execution", "wasm", "--wasm-execution","compiled"]
 
           security_context {
             privileged = true
