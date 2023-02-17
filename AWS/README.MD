@@ -54,7 +54,7 @@
 | [aws_autoscaling_group_tag.eks_node_groups](https://registry.terraform.io/providers/hashicorp/aws/4.48.0/docs/resources/autoscaling_group_tag) | resource |
 | [aws_eks_addon.coredns](https://registry.terraform.io/providers/hashicorp/aws/4.48.0/docs/resources/eks_addon) | resource |
 | [aws_vpc_ipv4_cidr_block_association.secondary_ipv4_cidr](https://registry.terraform.io/providers/hashicorp/aws/4.48.0/docs/resources/vpc_ipv4_cidr_block_association) | resource |
-| [kubernetes_deployment_v1.moonbeam](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment_v1) | resource |
+| [kubernetes_deployment_v1.collator](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment_v1) | resource |
 | [random_integer.octet1](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/integer) | resource |
 | [random_integer.octet2](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/integer) | resource |
 | [time_sleep.eks_node_groups_wait](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) | resource |
