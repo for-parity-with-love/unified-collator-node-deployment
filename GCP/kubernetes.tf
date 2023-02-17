@@ -1,7 +1,3 @@
-locals {
-  deployment_name = "collator"
-}
-
 data "google_client_config" "provider" {}
 
 provider "kubernetes" {
@@ -12,11 +8,11 @@ provider "kubernetes" {
   )
 }
 
-resource "kubernetes_deployment" "collator" {
+resource "kubernetes_deployment" "${var.project_name}" {
   metadata {
-    name = "${local.deployment_name}"
+    name = "${var.project_name}"
     labels = {
-      name = "${local.deployment_name}"
+      name = "${var.project_name}"
     }
   }
 
@@ -25,22 +21,22 @@ resource "kubernetes_deployment" "collator" {
 
     selector {
       match_labels = {
-        name = "${local.deployment_name}"
+        name = "${var.project_name}"
       }
     }
 
     template {
       metadata {
         labels = {
-          name = "${local.deployment_name}"
+          name = "${var.project_name}"
         }
       }
 
       spec {
         container {
-          image = "image-name"
-          name  = "${local.deployment_name}"
-          #command = ["command"]
+          image = "${var.docker_image}"
+          name  = "${var.project_name}"
+          #command = ["${var.container_command}"]
           args = ["args", "separated"]
 
           security_context {

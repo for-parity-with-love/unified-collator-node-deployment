@@ -14,3 +14,16 @@ variable "region" {
   description = "region"
   default = "us-central1"
 }
+
+variable "container_command" {
+  default = ""
+  type = string
+}
+
+variable "docker_image" {
+  type = string
+}
+
+variable "project_name" {
+  type = string
+}
