@@ -3,7 +3,7 @@ resource "random_id" "bucket_prefix" {
 }
 
 resource "google_storage_bucket" "backend" {
-  name          = "${random_id.bucket_prefix.hex}-bucket-tfstate"
+  name          = "collator-bucket-tfstate"
   force_destroy = false
   location      = "US"
   storage_class = "STANDARD"
