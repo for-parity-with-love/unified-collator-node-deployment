@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0
 
       - name: Super Code Linter
-        uses: github/super-linter@v4.9.7
+        uses: github/super-linter@v4.10.1
         env:
           ACTIONS_RUNNER_DEBUG: true
           VALIDATE_ALL_CODEBASE: false
