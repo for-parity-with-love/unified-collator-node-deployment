@@ -1,9 +1,7 @@
 #!/bin/bash
 
-NAME_OF_THE_BUCKET="blaize-collator-bucket"
-PROFILE="blaize"
+PROFILE="collator"
 
-PROVIDER="AWS"
 #uncomment for debug purpose
 #set -x
 #export TF_LOG="TRACE"
@@ -23,52 +21,53 @@ PS3="Please select desired collator to deploy: "
                     "astar")
                         echo "${WORKSPACE} was chosen..."
                         echo 'making setup...'
+                        cd ..
                         TERRAFORM_COMMAND=$(terraform workspace list | grep ${WORKSPACE})
                         if [[ -z "${TERRAFORM_COMMAND}" ]]; then
                           terraform workspace new ${WORKSPACE}
                         else
                           terraform workspace select ${WORKSPACE}
                         fi
-                        echo "terraform apply -var-file tfvars/${WORKSPACE}.tfvars"
-                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${WORKSPACE}.tfvars tfvars/${WORKSPACE}.tfvars --profile ${PROFILE}
+                        cat examples/deployments/${WORKSPACE}-deployment.example > deployment.tf
+                        echo "terraform apply -var-file examples/tfvars/${WORKSPACE}.tfvars"
                         terraform workspace select ${WORKSPACE}
-                        cat deployments/${WORKSPACE}.example > deployment.tf
-                        terraform apply -var-file tfvars/${WORKSPACE}.tfvars
-                        echo "terraform apply -var-file tfvars/${WORKSPACE}.tfvars"
+                        terraform apply -var-file examples/tfvars/${WORKSPACE}.tfvars
+                        echo "terraform apply -var-file examples/tfvars/${WORKSPACE}.tfvars"
                         exit
                         ;;
                     "moonbeam")
                         echo "${WORKSPACE} was chosen..."
                         echo 'making setup...'
+                        cd ..
                         TERRAFORM_COMMAND=$(terraform workspace list | grep ${WORKSPACE})
                         if [[ -z "${TERRAFORM_COMMAND}" ]]; then
                           terraform workspace new ${WORKSPACE}
                         else
                           terraform workspace select ${WORKSPACE}
                         fi
+                        cat examples/deployments/${WORKSPACE}-deployment.example > deployment.tf
                         echo "terraform apply -var-file tfvars/${WORKSPACE}.tfvars"
-                        aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${WORKSPACE}.tfvars tfvars/${WORKSPACE}.tfvars --profile ${PROFILE}
                         terraform workspace select ${WORKSPACE}
-                        cat deployments/${WORKSPACE}.example > deployment.tf
-                        terraform apply -var-file tfvars/${WORKSPACE}.tfvars
-                        echo "terraform apply -var-file tfvars/${WORKSPACE}.tfvars"
+                        terraform apply -var-file examples/tfvars/${WORKSPACE}.tfvars
+                        echo "terraform apply -var-file examples/tfvars/${WORKSPACE}.tfvars"
                         exit
                         ;;
                     "karura")
                         echo "${WORKSPACE} was chosen..."
                         echo 'making setup...'
+                        cd ..
                         TERRAFORM_COMMAND=$(terraform workspace list | grep ${WORKSPACE})
                         if [[ -z "${TERRAFORM_COMMAND}" ]]; then
                           terraform workspace new ${WORKSPACE}
                         else
                           terraform workspace select ${WORKSPACE}
                         fi
-                        echo "terraform apply -var-file tfvars/${WORKSPACE}.tfvars"
+                        cat examples/deployments/${WORKSPACE}-deployment.example > deployment.tf
+                        echo "terraform apply -var-file examples/tfvars/${WORKSPACE}.tfvars"
                         aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${WORKSPACE}.tfvars tfvars/${WORKSPACE}.tfvars --profile ${PROFILE}
                         terraform workspace select ${WORKSPACE}
-                        cat deployments/${WORKSPACE}.example > deployment.tf
-                        terraform apply -var-file tfvars/${WORKSPACE}.tfvars
-                        echo "terraform apply -var-file tfvars/${WORKSPACE}.tfvars"
+                        terraform apply -var-file examples/tfvars/${WORKSPACE}.tfvars
+                        echo "terraform apply -var-file examples/tfvars/${WORKSPACE}.tfvars"
                         exit
                         ;;
                     "Quit")

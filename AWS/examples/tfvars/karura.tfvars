@@ -1,12 +1,13 @@
 aws_region       = "eu-central-1"
-aws_profile_name = "blaize"
+aws_profile_name = "collator"
 
 project_name = "collator"
 
-node_name         = "blaize-node"
 
-chain_name   = "karura"
 docker_image = "acala/karura-node:latest"
+
+#main configuration is making here. For more information take a look collator documentation.
+container_args = ["--collator", "--name", "collator-node", "--chain", "karura", "--execution", "wasm"]
 
 
 eks_node_groups = [
