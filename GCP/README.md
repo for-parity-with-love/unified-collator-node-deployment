@@ -13,7 +13,7 @@ gcloud auth application-default login
 ### Run collator
 
 1. Configure variables in [terraform.tfvars](GCP/terraform.tfvars)
- - `project_id` - GCP organization project ID
+ - `project_name` - GCP organization project name
  - `region`     - GCP deployment region
  - `chain_name` - the name of collator chain
  - `node_name`  - unique node name

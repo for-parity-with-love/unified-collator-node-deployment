@@ -14,8 +14,10 @@
 
 ## Usage
 - After editing tfvars do not forget use `bash upload-tfvars.sh` to upload trfars file to bucket.
+aws s3 cp tfvars/${WORKSPACE}.tfvars s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${WORKSPACE}.tfvars --profile ${PROFILE}
 - If you need to deploy then use `bash deploy.sh` script.
-
+aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${WORKSPACE}.tfvars tfvars/${WORKSPACE}.tfvars --profile ${PROFILE}
+                        
 
 
 <!-- BEGIN_TF_DOCS -->

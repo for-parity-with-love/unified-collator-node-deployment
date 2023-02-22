@@ -11,7 +11,7 @@ locals {
 }
 
 resource "google_container_cluster" "primary" {
-  name     = "${var.project_id}-gke"
+  name     = "${var.project_name}-gke"
   min_master_version = "${local.min_master_version}"
   location = var.region
   remove_default_node_pool = true
@@ -71,12 +71,12 @@ resource "google_container_node_pool" "primary_nodes" {
     disk_size_gb = local.disk_size_gb
 
     labels = {
-      env = var.project_id
+      env = var.project_name
       cluster = google_container_cluster.primary.name
     }
     
     machine_type = "${local.machine_type}"
-    tags         = ["gke-node", "${var.project_id}-gke"]
+    tags         = ["gke-node", "${var.project_name}-gke"]
     metadata = {
       disable-legacy-endpoints = "true"
     }

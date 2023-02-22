@@ -1,5 +1,4 @@
 aws_region       = "eu-central-1"
-aws_profile_name = "collator"
 
 project_name = "collator"
 

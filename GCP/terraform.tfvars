@@ -1,5 +1,4 @@
-region             = "us-central1"
-project_id         = "replace value"
+region = "us-central1"
 
 project_name = "collator"
 
