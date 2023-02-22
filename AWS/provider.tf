@@ -41,6 +41,6 @@ provider "kubernetes" {
     command     = "aws"
   }
 
-    # If kubernetes provider unable to reach k8s cluster, uncomment this
-    #config_path    = "~/.kube/config"
+  #if kubernetes provider unable to reach k8s cluster, uncomment this
+  #config_path    = "~/.kube/config"
 }
