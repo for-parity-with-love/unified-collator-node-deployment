@@ -34,10 +34,10 @@ resource "kubernetes_deployment" "${var.project_name}" {
 
       spec {
         container {
-          image = "${var.docker_image}"
-          name  = "${var.project_name}"
-          #command = ["${var.container_command}"]
-          args = ["args", "separated"]
+          image   = ${var.docker_image}
+          name    = ${var.project_name}
+          args    = ${var.container_args}
+          #command = ${var.container_command}
 
           security_context {
             privileged = true

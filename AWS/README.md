@@ -1,18 +1,18 @@
-# AWS infrastructure
+# AWS Deployment
 
-### Pre-requirments
+## Pre-requirments
 1) Installed AWS cli with configured access. 
 2) Created S3 bucket
 3) Installed kubectl (optional for interacting with EKS)
 
-### Configurations
+## Configurations
 1) Rename `backend.tmp` to `backend.tf` and edit `bucket`, `region`, `profile` values inside. 
 
-### Optional Configurations
+## Optional Configurations
 1) Edit `examples/deploy.sh`, `examples/destroy.sh` scripts and fill `PROFILE` variables. (Name of the profile can be find in `~/.aws/credentials` after configuration aws cli)
 
 
-### Usage
+## Usage
 - After editing tfvars do not forget use `bash upload-tfvars.sh` to upload trfars file to bucket.
 - If you need to deploy then use `bash deploy.sh` script.
 

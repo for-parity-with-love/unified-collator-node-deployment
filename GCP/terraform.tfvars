@@ -1,7 +1,13 @@
-project_id         = "replace value"
 region             = "us-central1"
-chain_name         = "replace value"
-node_name          = "replace value"
-container_command  = "replace value"
-docker_image       = "replace value"
-project_name       = "replace value"
+project_id         = "replace value"
+
+project_name = "collator"
+
+#Collator docker image
+docker_image = "docker/image"
+
+#Arguments provided to the collator container. For more information take a look collator documentation.
+container_args = ["--collator", "--rpc-cors=all", "--name", "collator-node", "--chain", "chain", "--telemetry-url", "wss://telemetry.polkadot.io/submit/ 0", "--execution", "wasm", "--wasm-execution","compiled"]
+
+#Command provided to the collator container. For more information take a look collator documentation.
+#container_command = ["container-command"]

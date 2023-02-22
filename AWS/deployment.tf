@@ -1,33 +1,33 @@
-resource "kubernetes_deployment_v1" "collator" {
+resource "kubernetes_deployment" "${var.project_name}" {
   metadata {
-    name = var.project_name
+    name = "${var.project_name}"
     labels = {
-      name = var.project_name
+      name = "${var.project_name}"
     }
   }
 
   spec {
     replicas = 1
 
-    selector {
+        selector {
       match_labels = {
-        name = var.project_name
+        name = "${var.project_name}"
       }
     }
 
     template {
       metadata {
         labels = {
-          name = var.project_name
+          name = "${var.project_name}"
         }
       }
 
       spec {
         container {
-          image = var.docker_image
-          name  = var.project_name
-          command = var.container_command
-          args = var.container_args
+          image   = ${var.docker_image}
+          name    = ${var.project_name}
+          args    = ${var.container_args}
+          #command = ${var.container_command}
 
           security_context {
             privileged = true
