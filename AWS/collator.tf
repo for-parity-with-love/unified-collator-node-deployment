@@ -9,7 +9,7 @@ resource "kubernetes_deployment" "collator" {
   spec {
     replicas = 1
 
-        selector {
+      selector {
       match_labels = {
         name = "${var.project_name}"
       }

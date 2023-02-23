@@ -1,23 +1,50 @@
 # AWS Deployment
 
-## Pre-requirments
-1) Installed AWS cli with configured access. 
-2) Created S3 bucket
-3) Installed kubectl (optional for interacting with EKS)
-
-## Configurations
-1) Rename `backend.tmp` to `backend.tf` and edit `bucket`, `region`, `profile` values inside. 
-
-## Optional Configurations
-1) Edit `examples/deploy.sh`, `examples/destroy.sh` scripts and fill `PROFILE` variables. (Name of the profile can be find in `~/.aws/credentials` after configuration aws cli)
-
+## Pre-requirements
+1. Installed [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+2. AWS CLI [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html) with [programmatic access](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html)
+2) S3 bucket accessible by AWS CLI User
+3) [Optionally] Installed kubectl for interacting with EKS
 
 ## Usage
-- After editing tfvars do not forget use `bash upload-tfvars.sh` to upload trfars file to bucket.
-aws s3 cp tfvars/${WORKSPACE}.tfvars s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${WORKSPACE}.tfvars --profile ${PROFILE}
-- If you need to deploy then use `bash deploy.sh` script.
-aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${WORKSPACE}.tfvars tfvars/${WORKSPACE}.tfvars --profile ${PROFILE}
-                        
+### Configuration
+1. Configure variables in [terraform.tfvars](AWS/terraform.tfvars)
+ - `project_name` - AWS organization project name;
+ - `region` - AWS deployment region, default is `eu-central-1`;
+
+ - `docker_image` - docker image of the collator;
+ - `container_args` - collator arguments are specific to collator you are spinning up; no spaces allowed in arguments - separate them with `", "` instead of spaces;
+ - `container_command` - command bypassed to collator container.
+
+2. Configure container ports with `container_args` in [terraform.tfvars](AWS/terraform.tfvars) if your collator don't use defaults ports `30333`, `9933`, `9944`
+
+### Optional Configurations
+1. Configure variables in [backend.tf](AWS/backend/backend.tf)
+- `bucket` - bucket name where tfvars are stored;
+- `region` - bucket region.
+
+2. Configure variables in [terraform.tfvars](AWS/terraform.tfvars)
+- `eks_node_groups[0].disk_size` - you may specifiy the disk size of the node; default is 500Gb;
+- `eks_node_groups[0].instance_types` - you may specify instance size; default is "m5.xlarge".
+
+### Deployment
+Once you have configured everything, follow steps below to deploy the collator
+- Upload tfvars file to the bucket with `aws s3 cp terraform.tfvars s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/terraform.tfvars --profile ${PROFILE}`
+- Install all dependecies with `terraform init`
+- [optionally] create a workspace with `terraform workspace new ${COLLATOR_NAME}` if you need to support several collators
+- [optionally] select a workspace you are going to work with `terraform workspace select ${COLLATOR_NAME}`
+- Check deployment with `terraform plan`
+- If everything is planned correctly apply deployment with `terraform apply`
+- Verify that your node is syncing via https://telemetry.polkadot.io/
+
+
+### Update configuration
+If you need to update the existing configuration
+- [optionally] select the workspace you are going to work with `terraform workspace select ${COLLATOR_NAME}`
+- fetch tfvars you have stored previously `aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/terraform.tfvars terraform.tfvars --profile ${PROFILE}`
+- Verify that only required updates are planned with `terraform plan`
+- If everything is planned correctly, apply deployment with `terraform apply`
+                     
 
 
 <!-- BEGIN_TF_DOCS -->

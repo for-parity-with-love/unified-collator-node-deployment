@@ -1,33 +1,31 @@
-# GCP infrastructure
+# GCP Deployment
 
-### Pre-requirements
-1) GCP account
-2) Configured gcloud SDK
-3) Installed kubectl
-4) Login to gcloud SDK
+## Pre-requirements
+1. Installed [gcloud CLI](https://cloud.google.com/sdk/docs/install)
+2. Authorized gcloud SDK
 ```commandline
 gcloud init
 gcloud auth application-default login
 ```
+3. [Optionally] Installed kubectl for interacting with EKS
 
-### Run collator
-
+## Usage
+### Configuration
 1. Configure variables in [terraform.tfvars](GCP/terraform.tfvars)
- - `project_name` - GCP organization project name
- - `region`     - GCP deployment region
- - `chain_name` - the name of collator chain
- - `node_name`  - unique node name
+ - `project_name` - AWS organization project name;
+ - `region` - AWS deployment region, default is `eu-central-1`;
 
+ - `docker_image` - docker image of the collator;
+ - `container_args` - collator arguments are specific to collator you spinning up; no spaces allowed in arguments - separate them with `", "` instead of spaces;
+ - `container_command` - command bypassed to collator container.
 
+2. Configure container ports with `container_args` in [terraform.tfvars](GCP/terraform.tfvars) if your collator don't use defaults ports `30333`, `9933`, `9944`
 
-2. Configure deployment in [terraform.tfvars](GCP/kubernetes.tf)
- - `image` - docker image for the collator
- - `command` - collator command name
- - `args` - collator arguments, no spaces allowed in arguments - separate them with `", "` instead of spaces
+### Optional Configurations
+1. Configure variables in [backend.tf](GCP/backend/backend.tf)
+- `bucket` - bucket name where tfvars are stored;
 
-
-
-3. `optional` configure deployment parameters for GKE cluster in [gke-cluster.tf](GCP/gke-cluster.tf) ,  after any change GKE cluster is re-created
+2. Configure deployment parameters for GKE cluster in [gke-cluster.tf](GCP/gke-cluster.tf) 
  - `min_master_version` - minimal kubernetes version for master, GCP will update it automatically, and we can't prevent it
  - `disk_size_gb`       - disk size of each GKE node
  - `cluster_cidr`       - cidr for GKE cluster, make sure to edit cidr in [network.tf](GCP/network.tf) if editing `cluster_cidr`
@@ -38,16 +36,18 @@ gcloud auth application-default login
  - `total_min_nodes`    - min nodes number for autoscaler
  - `total_max_nodes`    - max nodes number for autoscaler, quota 8 for basic accounts
 
+<details>
+  <summary>WARN</summary>
+    After any changes, GKE cluster is re-created
+</details>
 
-
-4. `optional` copy file [backend.tf](GCP/backend/backend.tf) to GCP mail folder if we need to store tfstate in the google storage bucket
-
-
-5. Run deployment
-```commandline
-terraform apply
-```
-
+### Deployment
+Once you have configured everything follows steps below to deploy collator
+- Install all dependecies with `terraform init`
+- Check deployment with `terraform plan`
+- If everything is planned correctly apply deployment with `terraform apply `
+- `optional` copy file [backend.tf](GCP/backend/backend.tf) to GCP if you need to store tfstate in the google storage bucket
+- Verify that your node is syncing via https://telemetry.polkadot.io/
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
