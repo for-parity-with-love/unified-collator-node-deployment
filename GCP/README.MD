@@ -45,44 +45,9 @@ gcloud auth application-default login
 Once you have configured everything follows steps below to deploy collator
 - Install all dependecies with `terraform init`
 - Check deployment with `terraform plan`
-- If everything is planned correctly apply deployment with `terraform apply `
+- If everything is planned correctly apply deployment with `terraform apply`
 - `optional` copy file [backend.tf](GCP/backend/backend.tf) to GCP if you need to store tfstate in the google storage bucket
-- Verify that your node is syncing via https://telemetry.polkadot.io/
-
-<!-- BEGIN_TF_DOCS -->
-## Requirements
-
-| Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
-| <a name="requirement_gcloud"></a> [gcloud](#requirement\_gcloud) | 418.0.0 |
-
-
-## Providers
-
-| Name | Version |
-|------|---------|
-| <a name="provider_google"></a> [google ](#provider\_google ) | 4.51.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | n/a |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | n/a |
-
-
-## Resources
-
-| Name | Type |
-|------|------|
-| [random_id](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id) | resource |
-| [google_storage_bucket](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket) | resource |
-| [google_container_cluster](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster) | resource |
-| [google_container_node_pool](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool) | resource |
-| [kubernetes_deployment](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment) | resource |
-| [google_compute_network](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_network) | resource |
-| [google_compute_subnetwork](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork) | resource |
-| [google_compute_route](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_route) | resource |
-| [google_compute_router](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_router) | resource |
-| [google_compute_router_nat](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_router_nat) | resource |
-| [google_compute_firewall](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall) | resource |
-| [google_client_config](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/client_config) | data source |
+- Verify that your node is syncing via [telemetry](https://telemetry.polkadot.io/)
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
