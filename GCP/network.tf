@@ -1,12 +1,12 @@
 resource "google_compute_network" "vpc" {
-  name                            = "${var.project_id}-vpc"
+  name                            = "${var.project_name}-vpc"
   auto_create_subnetworks         = "false"
   routing_mode                    = "GLOBAL"
   delete_default_routes_on_create = true
 }
 
 resource "google_compute_subnetwork" "subnet" {
-  name          = "${var.project_id}-subnet"
+  name          = "${var.project_name}-subnet"
   region        = var.region
   network       = google_compute_network.vpc.name
   ip_cidr_range = "10.10.0.0/24"
@@ -21,13 +21,13 @@ resource "google_compute_route" "egress_internet" {
 }
 
 resource "google_compute_router" "router" {
-  name    = "${var.project_id}-router"
+  name    = "${var.project_name}-router"
   region  = var.region
   network = google_compute_network.vpc.name
 }
 
 resource "google_compute_router_nat" "nat" {
-  name   = "${var.project_id}-nat"
+  name   = "${var.project_name}-nat"
   router = google_compute_router.router.name
   region = var.region
 

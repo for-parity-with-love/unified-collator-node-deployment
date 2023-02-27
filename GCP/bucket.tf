@@ -1,5 +1,5 @@
 resource "google_storage_bucket_object" "default" {
-  name = "terraform.tfvars"
+  name         = "terraform.tfvars"
   source       = "./terraform.tfvars"
   content_type = "text/plain"
   bucket       = google_storage_bucket.backend.id

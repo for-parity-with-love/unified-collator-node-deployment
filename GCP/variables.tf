@@ -1,29 +1,21 @@
-variable "node_name" {
-  description = "collator node name"
-}
-
-variable "chain_name" {
-  description = "collator chain name"
-}
-
-variable "project_id" {
-  description = "project id"
-}
-
 variable "region" {
-  description = "region"
+  description = "GCP region"
   default = "us-central1"
 }
 
-variable "container_command" {
-  default = ""
+variable "project_name" {
   type = string
+}
+
+variable "container_command" {
+  default = [""]
+  type = list(string)
 }
 
 variable "docker_image" {
   type = string
 }
 
-variable "project_name" {
-  type = string
+variable "container_args" {
+  type = list(string)
 }

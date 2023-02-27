@@ -1,8 +1,14 @@
 variable "aws_region" {
   type = string
+  default = "eu-central-1"
 }
 
 variable "aws_profile_name" {
+  type = string
+  default = "default"
+}
+
+variable "project_name" {
   type = string
 }
 
@@ -17,10 +23,6 @@ variable "docker_image" {
 
 variable "container_args" {
   type = list(string)
-}
-
-variable "project_name" {
-  type = string
 }
 
 variable "eks_node_groups" {

@@ -1,17 +1,17 @@
 locals {
   min_master_version = "1.24"
-  disk_size_gb = 20
+  disk_size_gb = 500
   cluster_cidr = "10.101.0.0/16"
   services_cidr = "10.102.0.0/16"
   master_cidr = "10.100.100.0/28"
   machine_type = "e2-medium"
-  nodes_number = 3
-  total_min_nodes = 3
-  total_max_nodes = 8 #quota 8 for basic accounts
+  nodes_number = 1
+  total_min_nodes = 1
+  total_max_nodes = 1 #quota 8 for basic accounts
 }
 
 resource "google_container_cluster" "primary" {
-  name     = "${var.project_id}-gke"
+  name     = "${var.project_name}-gke"
   min_master_version = "${local.min_master_version}"
   location = var.region
   remove_default_node_pool = true
@@ -71,12 +71,12 @@ resource "google_container_node_pool" "primary_nodes" {
     disk_size_gb = local.disk_size_gb
 
     labels = {
-      env = var.project_id
+      env = var.project_name
       cluster = google_container_cluster.primary.name
     }
     
     machine_type = "${local.machine_type}"
-    tags         = ["gke-node", "${var.project_id}-gke"]
+    tags         = ["gke-node", "${var.project_name}-gke"]
     metadata = {
       disable-legacy-endpoints = "true"
     }
