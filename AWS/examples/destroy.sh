@@ -28,7 +28,7 @@ PS3="Please select desired collator to destroy: "
                         else
                           terraform workspace select ${WORKSPACE}
                         fi
-                        cat examples/deployments/${WORKSPACE}-deployment.example > deployment.tf
+                        cat examples/deployments/${WORKSPACE}-deployment.example > collator.tf
                         echo "terraform destroy -var-file examples/tfvars/${WORKSPACE}.tfvars"
                         terraform workspace select ${WORKSPACE}
                         terraform destroy -var-file examples/tfvars/${WORKSPACE}.tfvars
@@ -45,7 +45,7 @@ PS3="Please select desired collator to destroy: "
                         else
                           terraform workspace select ${WORKSPACE}
                         fi
-                        cat examples/deployments/${WORKSPACE}-deployment.example > deployment.tf
+                        cat examples/deployments/${WORKSPACE}-deployment.example > collator.tf
                         echo "terraform destroy -var-file tfvars/${WORKSPACE}.tfvars"
                         terraform workspace select ${WORKSPACE}
                         terraform destroy -var-file examples/tfvars/${WORKSPACE}.tfvars
@@ -62,7 +62,7 @@ PS3="Please select desired collator to destroy: "
                         else
                           terraform workspace select ${WORKSPACE}
                         fi
-                        cat examples/deployments/${WORKSPACE}-deployment.example > deployment.tf
+                        cat examples/deployments/${WORKSPACE}-deployment.example > collator.tf
                         echo "terraform destroy -var-file examples/tfvars/${WORKSPACE}.tfvars"
                         aws s3 cp s3://${NAME_OF_THE_BUCKET}/terraform/tfvars/${WORKSPACE}.tfvars tfvars/${WORKSPACE}.tfvars --profile ${PROFILE}
                         terraform workspace select ${WORKSPACE}

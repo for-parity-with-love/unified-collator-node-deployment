@@ -45,6 +45,8 @@ If you need to update the existing configuration
 - Verify that only required updates are planned with `terraform plan`
 - If everything is planned correctly, apply deployment with `terraform apply`
                      
+### Examples
+Examples of deployment for concrete parachains you can find [here](examples/README.md)
 
 
 <!-- BEGIN_TF_DOCS -->
