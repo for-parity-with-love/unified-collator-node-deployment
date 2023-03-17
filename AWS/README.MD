@@ -52,6 +52,7 @@ Examples of deployment for concrete parachains you can find [here](examples/READ
 ### Interact
 After terraform was successfully executed, use the following command to authenticate in the cluster.
 Do not forget to change name  (in case terraform code was changed and name of the cluster is other), region and profile if need.
+
 `aws eks  update-kubeconfig --name collator-cluster --region eu-central-1 --profile collator`.
 
 After execute command above, use `kubectl` to interact with cluster or install [k8slens](https://k8slens.dev/) (IDE for kubernetes). 
