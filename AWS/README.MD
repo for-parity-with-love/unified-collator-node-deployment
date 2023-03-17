@@ -57,6 +57,11 @@ Do not forget to change name  (in case terraform code was changed and name of th
 After execute command above, use `kubectl` to interact with cluster or install [k8slens](https://k8slens.dev/) (IDE for kubernetes). 
 In case subscription would be required, use [this link](https://app.k8slens.dev/subscribe-personal)
 
+### Monitoring
+All detailed advanced monitoring you can take a look in [cloudwatch](https://eu-central-1.console.aws.amazon.com/cloudwatch/home?region=eu-central-1) (do not forget to change region in case it is other).
+But common used monitoring is located directly in ec2 instance, at monitoring tab, eg
+![img.png](img.png)
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
