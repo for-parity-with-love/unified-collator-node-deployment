@@ -32,7 +32,7 @@ The same applies to deployment; we provide default good-enough parameters that y
 ## Supported clouds
 
 ## AWS
-Further instructions of AWS deployment is [here](AWS/README.md)
+Further instructions of AWS deployment is [here](AWS/README.MD)
 
 ## GCP
-Further instructions of GCP deployment is [here](GCP/README.md)
+Further instructions of GCP deployment is [here](GCP/README.MD)
