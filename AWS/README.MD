@@ -49,19 +49,26 @@ If you need to update the existing configuration
 Examples of deployment for concrete parachains you can find [here](examples/README.md)
 
 
-### Interact
+### Maintenance
+Current setup supports following Maintenance actions:
+* change disk size - update `eks_node_groups[0].disk_size` to desired value and run `terraform apply` to apply changes.
+* change instance size - update `eks_node_groups[0].instance_types` to desired value and run `terraform apply` to apply changes.
+* destroy - if you need to free all resources you can do that with `terrform destroy`. 
+NOTE: This actions are irreversible and causes recreation of the node
+
+#### EKS Maintenance
 After terraform was successfully executed, use the following command to authenticate in the cluster.
 Do not forget to change name  (in case terraform code was changed and name of the cluster is other), region and profile if need.
 
-`aws eks  update-kubeconfig --name collator-cluster --region eu-central-1 --profile collator`.
+`aws eks  update-kubeconfig --name collator-cluster --region ${AWS_REGION} --profile ${PROFILE}`.
 
 After execute command above, use `kubectl` to interact with cluster or install [k8slens](https://k8slens.dev/) (IDE for kubernetes). 
 In case subscription would be required, use [this link](https://app.k8slens.dev/subscribe-personal)
 
 ### Monitoring
-All detailed advanced monitoring you can take a look in [cloudwatch](https://eu-central-1.console.aws.amazon.com/cloudwatch/home?region=eu-central-1) (do not forget to change region in case it is other).
-But common used monitoring is located directly in ec2 instance, at monitoring tab, eg
-![img.png](img.png)
+Two monitoring options come out of the box with this project:
+* Detailed monitoring within [cloudwatch](https://aws.amazon.com/ru/cloudwatch/) (do not forget to change region in case it is other). Which provides dashboards and logs aggregation for the EC2 Instance, EKS cluster, Collator pod etc. The only thing you need to choose correct log groups from your aws account, by default it would be called `/aws/eks/collator-cluster/cluster`
+* Resource monitoring is located directly in ec2 instance, at monitoring tab, e. g. ![img.png](img.png)
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
