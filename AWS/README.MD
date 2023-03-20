@@ -51,6 +51,7 @@ Examples of deployment for concrete parachains you can find [here](examples/READ
 
 ### Maintenance
 Current setup supports following Maintenance actions:
+* update collator image - update `docker_image` variable in terraform var and run `terraform apply` to apply changes.
 * change disk size - update `eks_node_groups[0].disk_size` to desired value and run `terraform apply` to apply changes.
 * change instance size - update `eks_node_groups[0].instance_types` to desired value and run `terraform apply` to apply changes.
 * destroy - if you need to free all resources you can do that with `terrform destroy`. 
