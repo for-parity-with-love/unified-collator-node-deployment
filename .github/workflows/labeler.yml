@@ -23,7 +23,7 @@ jobs:
     name: Labeler
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: micnncim/action-label-syncer@v1.3.0
         env:
