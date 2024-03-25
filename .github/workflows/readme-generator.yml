@@ -21,7 +21,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: AWS docs
-        uses: terraform-docs/gh-actions@v1.0.0
+        uses: terraform-docs/gh-actions@v1.1.0
         with:
           working-dir: ./AWS/
           git-push: true
@@ -29,7 +29,7 @@ jobs:
           config-file: ".terraform-docs.yml"
 
       - name: GCP docs
-        uses: terraform-docs/gh-actions@v1.0.0
+        uses: terraform-docs/gh-actions@v1.1.0
         with:
           working-dir: ./GCP/
           git-push: true
