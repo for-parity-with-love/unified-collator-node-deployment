@@ -122,11 +122,11 @@ Two monitoring options come out of the box with this project:
 |------|-------------|------|---------|:--------:|
 | <a name="input_container_args"></a> [container\_args](#input\_container\_args) | n/a | `list(string)` | n/a | yes |
 | <a name="input_docker_image"></a> [docker\_image](#input\_docker\_image) | n/a | `string` | n/a | yes |
-| <a name="input_eks_node_groups"></a> [eks\_node\_groups](#input\_eks\_node\_groups) | n/a | <pre>list(object({<br>    name                = optional(string, "default")<br>    desired_size        = optional(number, "1")<br>    min_size            = optional(number, "1")<br>    max_size            = optional(number, "1")<br>    disk_size           = optional(number, "20")<br>    multi_az            = optional(bool, "true")<br>    kubernetes_version  = optional(string, "1.23")<br>    capacity_type       = optional(string, "ON_DEMAND")<br>    instance_types      = optional(list(string), ["t3.medium"])<br>    ami_release_version = optional(list(string), [])<br>    arch                = optional(string, "amd64")<br>    kubernetes_labels   = optional(map(string), {"node-group-purpose" = "default"})<br>  }))</pre> | n/a | yes |
+| <a name="input_eks_node_groups"></a> [eks\_node\_groups](#input\_eks\_node\_groups) | n/a | <pre>list(object({<br/>    name                = optional(string, "default")<br/>    desired_size        = optional(number, "1")<br/>    min_size            = optional(number, "1")<br/>    max_size            = optional(number, "1")<br/>    disk_size           = optional(number, "20")<br/>    multi_az            = optional(bool, "true")<br/>    kubernetes_version  = optional(string, "1.23")<br/>    capacity_type       = optional(string, "ON_DEMAND")<br/>    instance_types      = optional(list(string), ["t3.medium"])<br/>    ami_release_version = optional(list(string), [])<br/>    arch                = optional(string, "amd64")<br/>    kubernetes_labels   = optional(map(string), {"node-group-purpose" = "default"})<br/>  }))</pre> | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | n/a | `string` | n/a | yes |
 | <a name="input_aws_profile_name"></a> [aws\_profile\_name](#input\_aws\_profile\_name) | n/a | `string` | `"collator"` | no |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | n/a | `string` | `"eu-central-1"` | no |
-| <a name="input_container_command"></a> [container\_command](#input\_container\_command) | n/a | `list(string)` | <pre>[<br>  ""<br>]</pre> | no |
+| <a name="input_container_command"></a> [container\_command](#input\_container\_command) | n/a | `list(string)` | <pre>[<br/>  ""<br/>]</pre> | no |
 
 ## Outputs
 
